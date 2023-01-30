@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
             }
         }
         Debug.Log("Score: " + score);
+
+        //set restart button active
         if (playerControllerScript.restartOption == true)
         {
             restartPanel.SetActive(true);
@@ -72,6 +74,7 @@ public class GameManager : MonoBehaviour
         playerControllerScript.GetComponent<Animator>().SetFloat("Speed_Multiplier", 1.0f);
         playerControllerScript.gameOver = false;
     }
+    // restart the game 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
