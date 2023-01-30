@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,16 +10,22 @@ public class GameManager : MonoBehaviour
     private PlayerController playerControllerScript;
     public Transform startingPoint; 
     public float lerpSpeed;
+    public GameObject restartPanel;
 
     // Start is called before the first frame update
     void Start()
-    {   //connecting to playercontroller script
+    {   
+  
+        //connecting to playercontroller script
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         score = 0;
 
         //setting game over to control intro animation
         playerControllerScript.gameOver = true;
+        //playing intro animation
         StartCoroutine(PlayIntro());
+        
+
     }
 
     // Update is called once per frame
@@ -36,6 +44,10 @@ public class GameManager : MonoBehaviour
             }
         }
         Debug.Log("Score: " + score);
+        if (playerControllerScript.restartOption == true)
+        {
+            restartPanel.SetActive(true);
+        }
     }
     //intro animation function
     IEnumerator PlayIntro()
@@ -59,5 +71,9 @@ public class GameManager : MonoBehaviour
         }
         playerControllerScript.GetComponent<Animator>().SetFloat("Speed_Multiplier", 1.0f);
         playerControllerScript.gameOver = false;
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

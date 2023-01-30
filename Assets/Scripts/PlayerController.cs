@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float doubleJumpForce = 5.0f;
     public bool doubleJumpedUsed = false;
     public bool dashAbility = false;
+    public bool restartOption = false;
 
     
     // Start is called before the first frame update
@@ -98,6 +99,7 @@ public class PlayerController : MonoBehaviour
             //setting game over state 
             gameOver = true;
             Debug.Log("Game Over");
+            restartOption = true;
             
         }
     }
